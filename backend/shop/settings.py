@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # internal apps:
         'authentication', # This app is responsible for authentication.
-        'profiles', # this is for user pofile (basket , image profile , e.t.c)
+        'profiles', # this is for user pofile (first and last name , image profile , e.t.c)
+        'products' # this app is for products
     
     # external apps:
         'rest_framework',
