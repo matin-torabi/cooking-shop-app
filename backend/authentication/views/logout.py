@@ -12,17 +12,18 @@ from drf_spectacular.utils import extend_schema
 from authentication.serializers.logout import LogoutSerializer
 
 
-class DeleteAccountView(APIView):
+class LogoutView(APIView):
     '''
     this API endpoint can block access token.
     
     
     Request Format:
-    POST auth/auth/logout/
-    {
-        "refresh": "string"
-    }
-    
+    DELETE auth/auth/logout/
+
+    header{
+        Authorazatons : Bearer <access token>
+        }
+
     Response Format (Success):
     HTTP 200. OK
     {

@@ -1,10 +1,7 @@
 # views
 from authentication.views.register import FirstStepRegisterView, SecondStepRegisterView
-<<<<<<< HEAD
-from authentication.views.login import FirstStepLoginView ,SecondSteploginView
-=======
-from authentication.views.login import FirstStepLoginView ,SecondStepLoginView
->>>>>>> d244423 (firs commit on linux)
+from authentication.views.login import FirstStepLoginView , SecondSteploginView
+
 from rest_framework_simplejwt.views import TokenRefreshView
 from authentication.views.logout import LogoutView
 
@@ -17,13 +14,11 @@ urlpatterns = [
     
     # login endpoint
     path('login/step-one/', FirstStepLoginView.as_view(), name='step-one-login'),
-<<<<<<< HEAD
+
     path('login/step-two/', SecondSteploginView.as_view(), name='step-two-login'),
     
     path('logout/', LogoutView.as_view(), name='logout'),
-=======
-    path('login/step-two/', SecondStepLoginView.as_view(), name='step-two-login'),
->>>>>>> d244423 (firs commit on linux)
+
     
 
     # Token management
