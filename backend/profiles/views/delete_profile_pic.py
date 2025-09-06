@@ -1,3 +1,6 @@
+# this file is responsible to delete user's profile
+
+
 # rest frame work:
 from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
@@ -13,7 +16,31 @@ from drf_spectacular.utils import extend_schema
 
 class DeleteProfileView(APIView):
     '''
-    this API endpoint can delete user's profile
+    this API endpoint can delete user's profile:
+    user can delete profile with this endpoint
+    
+    DELETE /profile/delete/
+    header{
+        Authorazatons : Bearer <access token>
+        }
+    
+    Response Format (Success):
+    HTTP 200. OK
+    {
+        
+        "message": "string",
+        
+    }
+    
+    
+    Response Format (Error):
+    HTTP 400 Bad Request
+    {
+        "status": "error",
+        "message": "string",
+    }
+    
+    
     '''
     permission_classes = [IsAuthenticated]
     @extend_schema(request=DeleteProfileSerializer, responses={200 : dict} , summary='حذف پروفایل فعلی کاربر')
@@ -27,4 +54,4 @@ class DeleteProfileView(APIView):
         )
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response({'message': 'پروفایل شما با موفقیت حذف شد'}, status=status.HTTP_200_OK)
+        return Response({'message': 'پروفایل شما با موفقیت حذف شد' ,"status": "success",}, status=status.HTTP_200_OK)

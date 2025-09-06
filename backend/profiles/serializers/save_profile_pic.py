@@ -1,4 +1,12 @@
-<<<<<<< HEAD
+"""
+Serializer responsible for adding or updating a user's profile.
+
+Workflow:
+    - Uses Celery and Redis for asynchronous image processing.
+    - Resizes the profile image to 400x400 pixels.
+    - Converts the profile image to WebP format.
+"""
+
 # serializer:
 from rest_framework import serializers
 
@@ -29,21 +37,13 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
     - Uses Celery for async operations, such as image processing or notifications.
 
     """
-=======
-import uuid
-from django.core.cache import cache
-from rest_framework import serializers
-from profiles.models import Profile
-from profiles.tasks import save_profile
 
-class UpdateProfileSerializer(serializers.ModelSerializer):
->>>>>>> d244423 (firs commit on linux)
     image = serializers.ImageField(write_only=True)
 
     class Meta:
         model = Profile
         fields = ["image"]
-<<<<<<< HEAD
+
 
     def update(self, instance, validated_data):
         # profile image
@@ -53,24 +53,10 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
 
         # redis key
         key = f"profile:{instance.user.username}:{uuid.uuid4()}"
-        # save image to redis
-        cache.set(key, image.read(), timeout=300)
         
-=======
-
-    def update(self, instance, validated_data):
-        image = validated_data.get("image")
-        if not image:
-            return instance
-
-        # کلید یکتا برای ذخیره در Redis
-        key = f"profile:{instance.user}:{uuid.uuid4()}"
-        cache.set(key, image.read(), timeout=300)
-
-        # ارسال تسک به Celery
-        print(instance.user)
-        save_profile.delay(username=instance.user.username, key=key, filename=image.name)
->>>>>>> d244423 (firs commit on linux)
+        # Read an image file as binary data and store it in Redis (in-memory storage)
+        cache.set(key, image.read(), timeout=750) # save image for 12.5 mins
+        
 
         # send to celety task
         save_profile.delay(username=instance.user.username, key=key, filename=image.name)

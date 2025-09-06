@@ -1,3 +1,6 @@
+# this files is responsible to complete user's info
+
+
 # rest frame work:
 from rest_framework.response import Response
 from rest_framework import status
@@ -22,6 +25,10 @@ class CompleteProfileView(APIView):
       "last_name": "string"
     }
     
+    header{
+        Authorazatons : Bearer <access token>
+        }
+    
     Response Format (Success):
     HTTP 200. OK
     {
@@ -37,10 +44,6 @@ class CompleteProfileView(APIView):
     {
         "status": "error",
         "message": "string",
-<<<<<<< HEAD
-=======
-
->>>>>>> d244423 (firs commit on linux)
     }
     '''
     permission_classes = [IsAuthenticated]

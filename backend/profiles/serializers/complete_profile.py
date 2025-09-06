@@ -1,3 +1,9 @@
+"""
+After a user creates an account, they must complete their profile.
+"""
+
+
+
 # rest frame work:
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -14,7 +20,9 @@ class CompleteProfileViewSerializer(serializers.ModelSerializer):
     class Meta:
         model = get_user_model()
         fields = ['first_name', 'last_name']
-
+    
+    # NOTE validate first and last name fields because we need these fields in future 
+    
     def validate_first_name(self, value):
         
         if not value.strip():
@@ -41,7 +49,7 @@ class CompleteProfileViewSerializer(serializers.ModelSerializer):
     
 
     def update(self, instance, validated_data):
-        # save first and las name
+        # save first and las name to db
         instance.first_name = validated_data.get('first_name', instance.first_name)
         instance.last_name = validated_data.get('last_name', instance.last_name)
         instance.save()

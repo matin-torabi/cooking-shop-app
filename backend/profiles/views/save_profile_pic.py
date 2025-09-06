@@ -23,6 +23,31 @@ class UpdateProfileView(APIView):
         - Utilizes Redis for caching the processed image.
 
     This approach ensures efficient image handling and improves response times by offloading processing.
+    
+    
+    Request Format:
+    POST /profile/update/
+    {
+     "image": "USER-PROFILE-IMAGE"
+    }
+    
+    header{
+        Authorazatons : Bearer <access token>
+        }
+    
+    Response Format (Success):
+    HTTP 200. OK
+    {
+        "status": "success",
+        "message": "string",
+    
+    }
+    
+    
+    Response Format (Error):
+    HTTP 400 Bad Request
+    
+    
     """
     permission_classes = [IsAuthenticated]
     @extend_schema(request=UpdateProfileSerializer, responses={201 : dict} , summary=' اضافه یا عوض کردن پروفایل کاربر')
@@ -38,4 +63,4 @@ class UpdateProfileView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
 
-        return Response({'message': 'اطلاعات با موفقیت بروزرسانی شد'}, status=status.HTTP_200_OK)
+        return Response({'message': 'اطلاعات با موفقیت بروزرسانی شد' , 'status':'success'}, status=status.HTTP_200_OK)

@@ -3,7 +3,6 @@ from rest_framework import serializers
 
 # models:
 from django.contrib.auth import get_user_model
-
 User = get_user_model()
 
 class NavbarSerializer(serializers.ModelSerializer):
@@ -28,23 +27,16 @@ class NavbarSerializer(serializers.ModelSerializer):
       fields = ['username', 'first_name', 'last_name', 'profile_image' , 'cart_count']
 
    def get_profile_image(self, obj):
-<<<<<<< HEAD
+        # Handles the user's profile.
+        # NOTE If the user doesn't have a profile, returns a default profile without saving it to the database.
+
         request = self.context.get("request")
         if obj.profile.image:
             return request.build_absolute_uri(obj.profile.image.url)
+         
+         # default profile:
         return request.build_absolute_uri('/media/ananymouse/ananymouse.jpg/')
-=======
-      request = self.context.get("request")
-    
-    
-      if hasattr(obj, 'profile') and obj.profile.image:
-        return request.build_absolute_uri(obj.profile.image.url)
-    
-    
-      default_url = '/media/profiles/profile.png'
-      return request.build_absolute_uri(default_url)
->>>>>>> d244423 (firs commit on linux)
 
    def get_cart_count(self, obj):
       return 10
-      #   return obj.cart.items.count() if hasattr(obj, "cart") else 0
+      #   return obj.cart.items.count() if hasattr(obj, "cart") else 0 BUG BUG

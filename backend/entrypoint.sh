@@ -18,17 +18,11 @@ echo "Waiting for Redis..."
 /wait-for-db.sh $REDIS_HOST $REDIS_PORT -- echo "Redis is up"
 
 # ---------------------------------------
-# Create migrations for authentication app (fix the dependency error)
-# ---------------------------------------
-echo "Creating migrations for authentication app..."
-# python manage.py makemigrations authentication --noinput
-
-# ---------------------------------------
 # Apply database migrations
 # ---------------------------------------
 echo "Applying database migrations..."
-python manage.py makemigrations --noinput
-python manage.py migrate --noinput
+python manage.py makemigrations 
+python manage.py migrate 
 
 # ---------------------------------------
 # Collect static files
@@ -40,7 +34,7 @@ python manage.py collectstatic --noinput
 # Start Celery Worker in background
 # ---------------------------------------
 echo "Starting Celery worker..."
-celery -A shop worker -l info &
+celery -A shop worker -l info & # -> run in background
 
 # ---------------------------------------
 # Start Django with Gunicorn

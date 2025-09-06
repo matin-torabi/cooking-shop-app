@@ -1,9 +1,11 @@
+"""
+Serializer responsible for deleting a user's profile. 
+If the user does not have a profile, it returns a default profile instead.
+"""
+
+
 # serializer:
 from rest_framework import serializers
-
-
-# worker:
-from profiles.tasks import save_profile
 
 # model:
 from profiles.models import Profile
@@ -19,8 +21,9 @@ class DeleteProfileSerializer(serializers.ModelSerializer):
 
     def validate(self, attrs):
         request = self.context.get('request')
+        # # If the profile model does not perform correctly
         if not hasattr(request.user, 'profile'):
-            raise serializers.ValidationError({'message': 'شما پروفایل ندارید'})
+            raise serializers.ValidationError({'message': 'شما پروفایل ندارید' ,"status": "error",})
         return attrs
 
     def update(self, instance):

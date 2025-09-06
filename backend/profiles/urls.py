@@ -1,8 +1,9 @@
-
+# views:
 from profiles.views.navbar import NavbarView
 from profiles.views.complete_profile import CompleteProfileView
 from profiles.views.save_profile_pic import UpdateProfileView
 from profiles.views.delete_profile_pic import DeleteProfileView
+
 from django.urls import path
 
 urlpatterns = [

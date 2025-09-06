@@ -6,6 +6,5 @@ class ProfilesConfig(AppConfig):
     name = 'profiles'
     
     def ready(self):
-        from authentication.core.signals import register_signal
         from profiles.signals import profile
         

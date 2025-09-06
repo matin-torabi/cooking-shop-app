@@ -1,5 +1,15 @@
 # NOTE this file is responsible to save profile images
 
+"""
+Celery task for profile image processing.
+
+Features:
+    - Caches the processed image in Redis.
+    - Resizes the image to 400x400 pixels.
+    - Converts the image to WebP format.
+    - Uses BytesIO for efficient in-memory operations.
+"""
+
 # django:
 from django.core.cache import cache
 from django.core.files.base import ContentFile
@@ -22,11 +32,7 @@ def save_profile(username, key, filename=None):
     Celery task to save a user's profile image from Redis cache to the database.
     """
     try:
-<<<<<<< HEAD
-        print(username)
-=======
-        
->>>>>>> d244423 (firs commit on linux)
+
         User = get_user_model()
         user = User.objects.get(username=username)
         profile, created = Profile.objects.get_or_create(user=user)
@@ -50,14 +56,14 @@ def save_profile(username, key, filename=None):
         im.save(buffer, format='WEBP')
         buffer.seek(0)
         
-        # change format to webp XXX -> its better for speed 
+        # change format to webp NOTE--> its better for site speed 
         name, ext = os.path.splitext(str(filename))
         webp_filename = f"{name}.webp"
         
         # add profile to user
         profile.image.save(webp_filename, ContentFile(buffer.read()), save=True)
 
-        # remove chache image
+        # remove chached image
         cache.delete(key)
 
         return {"status": "success", "message": "عکس با موفقیت ذخیره شد", "path": profile.image.url}

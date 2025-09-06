@@ -1,3 +1,6 @@
+# this file is just for navbar , ir return some simple information loke (image profile , first name , last name)
+
+
 # rest frame work:
 from rest_framework.response import Response
 from rest_framework import status
@@ -21,7 +24,8 @@ class NavbarView(APIView):
     Request Format:
     GET /profile/navbar/
     header{
-        Authorazatons : Bearer <access token>}
+        Authorazatons : Bearer <access token>
+        }
 
     Response Format (Success):
     HTTP 200. OK
