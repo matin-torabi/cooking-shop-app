@@ -1,0 +1,55 @@
+services:
+  django:
+    build: .
+    container_name: cooking
+    command: /entrypoint.sh
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - db
+      - celery
+    volumes:
+      - .:/app
+      - ./media:/app/media
+    environment:
+      - DEBUG=0
+      - DATABASE_URL=postgres://cooking:cooking226023@db:5432/cooking
+      - REDIS_PASSWORD=cooking226023
+
+  redis:
+    image: redis:7
+    container_name: redis
+    command: redis-server --requirepass "cooking226023"
+    ports:
+    - "6379:6379"
+
+  celery:
+    build: .
+    command: celery -A shop worker -l info
+    volumes:
+      - .:/app
+    depends_on:
+      - redis
+      - db
+
+  db:
+    image: postgres:17.6
+    environment:
+      POSTGRES_USER: cooking
+      POSTGRES_PASSWORD: cooking226023
+      PGDATA: /data/postgres
+      POSTGRES_DB: cooking
+    volumes:
+      - db:/data/postgres
+    ports:
+      - "5332:5432"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cooking -d cooking"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  db:
