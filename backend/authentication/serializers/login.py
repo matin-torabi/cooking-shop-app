@@ -16,14 +16,12 @@ from django.core.cache import cache
 
 # models:
 from django.contrib.auth import get_user_model
-from django.contrib.auth.models import Group
 
 
 # other:
 import random
 import uuid
 from rest_framework_simplejwt.tokens import RefreshToken
-from authentication.core.groups.group_manager import move_user_to_group
 
 
 
@@ -155,7 +153,7 @@ class SecondStepLoginSerializer(serializers.Serializer):
         user.is_active = True
         user.save()
         
-        # make token
+        # make jwt tokens
         token = RefreshToken.for_user(user)
         return {
             "status": "success",
