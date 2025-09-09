@@ -69,3 +69,13 @@ SIMPLE_JWT = {
 'ROTATE_REFRESH_TOKENS': True,
 'BLACKLIST_AFTER_ROTATION': True,
             }
+
+
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'سایت آشپزی ',
+    'DESCRIPTION': 'پروژه سایت آشپزی',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    
+}

@@ -21,17 +21,23 @@ class CompleteProfileView(APIView):
     Request Format:
     POST /profile/complete/
     {
-      "first_name": "string",
-      "last_name": "string"
+        
+        "first_name": "string",
+        "last_name": "string"
+      
     }
     
-    header{
+    header
+    {
+
         Authorazatons : Bearer <access token>
-        }
+
+    }
     
     Response Format (Success):
     HTTP 200. OK
     {
+        
         "status": "success",
         "message": "string",
         "result": "string",
@@ -42,8 +48,10 @@ class CompleteProfileView(APIView):
     Response Format (Error):
     HTTP 400 Bad Request
     {
+        
         "status": "error",
         "message": "string",
+        
     }
     '''
     permission_classes = [IsAuthenticated]

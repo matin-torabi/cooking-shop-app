@@ -31,20 +31,25 @@ class FirstStepLoginView(APIView):
     POST auth/login/step-one/
 
     {
+        
         "phone_number": "09123456789"
+        
     }
     
     Response Format (Success):
     HTTP 200 OK
     {
+        
         "status": "success",
         "message": "OTP sent successfully",
         "temp_token": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+        
     }
     
     Response Format (Error):
     HTTP 400 Bad Request
     {
+        
         "status": "error",
         "message": "Invalid phone number format",
         
@@ -80,23 +85,28 @@ class SecondSteploginView(APIView):
     Request Format:
     POST auth/register/step-two/
     {
+        
         "temp_token": "string",
         "otp_code": "string"
+        
     }
     
     Response Format (Success):
     HTTP 201. OK
     {
+        
         "status": "success",
         "message": "User registered successfully",
         "refresh" : "refresh token"
         "access" : "access token"
+        
     }
     
     
     Response Format (Error):
     HTTP 400 Bad Request
     {
+        
         "status": "error",
         "message": "Invalid OTP code",
 

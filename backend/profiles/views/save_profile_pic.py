@@ -28,16 +28,22 @@ class UpdateProfileView(APIView):
     Request Format:
     POST /profile/update/
     {
-     "image": "USER-PROFILE-IMAGE"
+        
+        "image": "USER-PROFILE-IMAGE"
+     
     }
     
-    header{
+    header
+    {
+        
         Authorazatons : Bearer <access token>
-        }
+        
+    }
     
     Response Format (Success):
     HTTP 200. OK
     {
+        
         "status": "success",
         "message": "string",
     
@@ -53,7 +59,7 @@ class UpdateProfileView(APIView):
     @extend_schema(request=UpdateProfileSerializer, responses={201 : dict} , summary=' اضافه یا عوض کردن پروفایل کاربر')
 
 
-    def post(self, request, *args, **kwargs):
+    def patch(self, request, *args, **kwargs):
         serializer = UpdateProfileSerializer(
             instance=request.user.profile,
             data=request.data,

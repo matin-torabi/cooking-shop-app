@@ -23,22 +23,28 @@ class NavbarView(APIView):
     
     Request Format:
     GET /profile/navbar/
-    header{
+    header
+    {
+        
         Authorazatons : Bearer <access token>
-        }
+        
+    }
 
     Response Format (Success):
     HTTP 200. OK
     {
+        
         "status" : "USER_GROUP",
         "profile_image" : "profile URL",
         "cart_count" : 0 ,
+        
     }
     
     
     Response Format (Error):
     HTTP 400 Bad Request
     {
+        
         "status": "error",
         "message": "some message",
 

@@ -20,9 +20,12 @@ class DeleteProfileView(APIView):
     user can delete profile with this endpoint
     
     DELETE /profile/delete/
-    header{
+    header
+    {
+        
         Authorazatons : Bearer <access token>
-        }
+    
+    }
     
     Response Format (Success):
     HTTP 200. OK
@@ -35,8 +38,10 @@ class DeleteProfileView(APIView):
     Response Format (Error):
     HTTP 400 Bad Request
     {
+        
         "status": "error",
         "message": "string",
+        
     }
     
     

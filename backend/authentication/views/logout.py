@@ -20,20 +20,26 @@ class LogoutView(APIView):
     Request Format:
     DELETE auth/auth/logout/
 
-    header{
+    header
+    {
+        
         Authorazatons : Bearer <access token>
-        }
+        
+    }
 
     Response Format (Success):
     HTTP 200. OK
     {
+        
         "message": "str",
+        
     }
     
     
     Response Format (Error):
     HTTP 400 Bad Request
     {
+        
         "message": "str",
 
     }
