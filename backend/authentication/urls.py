@@ -16,7 +16,6 @@ urlpatterns = [
     path('login/step-one/', FirstStepLoginView.as_view(), name='step-one-login'),
 
     path('login/step-two/', SecondSteploginView.as_view(), name='step-two-login'),
-    
     path('logout/', LogoutView.as_view(), name='logout'),
 
     
