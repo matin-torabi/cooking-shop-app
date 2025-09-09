@@ -11,15 +11,15 @@ class Cart(models.Model):
     
     
     
-class CartItem(models.Model):
-    cart = models.ForeignKey(Cart , on_delete=models.CASCADE , related_name='items')
+# class CartItem(models.Model):
+#     cart = models.ForeignKey(Cart , on_delete=models.CASCADE , related_name='items')
     
-    # Generic Relation:
-    content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-    object_id = models.PositiveIntegerField()
-    content_object = GenericForeignKey('content_type' , 'object_id ')
+#     # Generic Relation:
+#     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
+#     object_id = models.PositiveIntegerField()
+#     content_object = GenericForeignKey('content_type' , 'object_id ')
     
-    quantity = models.PositiveIntegerField(default=1)
+#     quantity = models.PositiveIntegerField(default=1)
     
-    def __str__(self):
-        return f'{self.content_object} - {self.quantity}'
+#     def __str__(self):
+#         return f'{self.content_object} - {self.quantity}'
