@@ -49,7 +49,12 @@ def save_profile(username, key, filename=None):
         
         im = Image.open(BytesIO(data))
         im = im.convert('RGB')
-        im = im.resize((400, 400))
+        width , height = im.size
+        
+        if width > 400 and height > 400:
+            im = im.crop((0,0,400,400))
+        else:
+            im = im.resize((400, 400))
 
         # save image in RAM
         buffer = BytesIO()

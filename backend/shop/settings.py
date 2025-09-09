@@ -30,6 +30,7 @@ INSTALLED_APPS = [
         'authentication', # This app is responsible for authentication.
         'profiles', # this is for user pofile (first and last name , image profile , e.t.c)
         'products', # this app is for products
+        'checkout', # this is for basket
     
     # external apps:
         'rest_framework',
@@ -37,7 +38,7 @@ INSTALLED_APPS = [
         'corsheaders',
         'rest_framework_simplejwt',
         'rest_framework_simplejwt.token_blacklist',
-        # 'django_cleanup.apps.CleanupConfig',
+        'django_cleanup.apps.CleanupConfig',
         
 ]
 
