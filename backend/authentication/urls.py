@@ -18,7 +18,6 @@ urlpatterns = [
     path('login/step-two/', SecondSteploginView.as_view(), name='step-two-login'),
     path('logout/', LogoutView.as_view(), name='logout'),
 
-    
 
     # Token management
     path('token/refresh/', TokenRefreshView.as_view(), name='token-refresh'),
