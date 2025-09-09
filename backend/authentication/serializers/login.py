@@ -42,7 +42,7 @@ class FirstStepLoginSerializer(serializers.Serializer):
         phone_number = attrs.get('phone_number')
         User = get_user_model()
         
-        
+        # phone validation:
         if not phone_number:
             raise ValidationError({'message' : "شماره موبایل نباید خالی باشد"})
         if len(phone_number) != 11:
@@ -63,7 +63,7 @@ class FirstStepLoginSerializer(serializers.Serializer):
     def create(self, validated_data):
         phone_number = validated_data["phone_number"]
 
-        # if otp token exist already
+        # if OTP exists already
         existing = cache.get(f"otp:phone:{phone_number}")
         if existing:
             return {
@@ -72,11 +72,11 @@ class FirstStepLoginSerializer(serializers.Serializer):
                 'time' : cache.ttl(f"otp:phone:{phone_number}")
             }
 
-        # generate temp_token and otp
+        # generate temp_token and OTP
         otp = str(random.randint(100000, 999999))
         temp_token = str(uuid.uuid4())
 
-        # save it in cache
+        # save OTP in cache
         cache.set(
             f"otp:{temp_token}",
             {"phone_number": phone_number, "otp": otp},
@@ -151,18 +151,11 @@ class SecondStepLoginSerializer(serializers.Serializer):
         User = get_user_model()
         user, created = User.objects.get_or_create(username=phone_number)
 
-<<<<<<< HEAD
+        # activate user
         user.is_active = True
         user.save()
-
-
         
-=======
-        # Add user to 'authenticated' group
-        group, created_group = Group.objects.get_or_create(name='authenticated')
-        user.groups.add(group)
->>>>>>> d244423 (firs commit on linux)
-        
+        # make token
         token = RefreshToken.for_user(user)
         return {
             "status": "success",

@@ -1,3 +1,6 @@
+# logout serializer
+
+
 # rest frame work:
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -24,6 +27,7 @@ class LogoutSerializer(serializers.Serializer):
         user = request.user
         
         User = get_user_model()
+        # deactivate user
         user_ = User.objects.get(id=user.id)
         user_.is_active = False
         user_.save()

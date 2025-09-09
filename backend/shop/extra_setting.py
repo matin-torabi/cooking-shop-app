@@ -5,7 +5,6 @@ from datetime import timedelta
 
 # custom user model
 AUTH_USER_MODEL = 'authentication.CustomUser'
-import os
 
 # ===================
 # Redis Info
@@ -44,7 +43,7 @@ DATABASES = {
 # ===================
 # Celery
 # ===================
-# redis 0 برای celery
+#celery in redis 0
 CELERY_BROKER_URL = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0"
 CELERY_RESULT_BACKEND = f"redis://:{REDIS_PASSWORD}@{REDIS_HOST}:{REDIS_PORT}/0"
 
@@ -67,4 +66,6 @@ REST_FRAMEWORK = {
 SIMPLE_JWT = {
 "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
 "REFRESH_TOKEN_LIFETIME": timedelta(days=365),
+'ROTATE_REFRESH_TOKENS': True,
+'BLACKLIST_AFTER_ROTATION': True,
             }
