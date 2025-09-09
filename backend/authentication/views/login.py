@@ -15,31 +15,21 @@ from drf_spectacular.utils import extend_schema
 
 
 class FirstStepLoginView(APIView):
-<<<<<<< HEAD
+
     '''
     First Step User login - Phone Number Validation and OTP Generation
     
-=======
-    """
-    First Step User login - Phone Number Validation and OTP Generation
-    
-    This API endpoint reacive an OTP code and temp_token
->>>>>>> d244423 (firs commit on linux)
+
     Workflow:
     1. Receives an Iranian mobile phone number
     2. Validates the phone number format and uniqueness
     3. Generates a time-limited OTP code
     4. Sends the OTP to the provided phone number (via SMS/email)
-<<<<<<< HEAD
+
     
     Request Format:
     POST auth/login/step-one/
-=======
-    5. Returns a temporary session token for the next registration step
-    
-    Request Format:
-    POST auth/register/step-one/
->>>>>>> d244423 (firs commit on linux)
+
     {
         "phone_number": "09123456789"
     }
@@ -59,15 +49,11 @@ class FirstStepLoginView(APIView):
         "message": "Invalid phone number format",
         
     }
-<<<<<<< HEAD
+
     
     '''
     
-=======
 
-   
-    """
->>>>>>> d244423 (firs commit on linux)
     permission_classes = [AllowAny]
     @extend_schema(request=FirstStepLoginSerializer , responses={200 : dict} , summary='دریافت کد یک بار مصرف برای ورود')
     def post(self , request , *args, **kwargs):    
@@ -80,8 +66,7 @@ class FirstStepLoginView(APIView):
 
 
 
-    
-<<<<<<< HEAD
+
 class SecondSteploginView(APIView):
     '''
     Second Step login - OTP Verification and Account Creation
@@ -119,10 +104,7 @@ class SecondSteploginView(APIView):
     
     '''
     @extend_schema(request=SecondStepLoginSerializer, responses={201 : dict} , summary='تایید کد یک بار مصرف و ورود کاربر')
-=======
-class SecondStepLoginView(APIView):
-    @extend_schema(request=SecondStepLoginSerializer, responses={201 : dict} , summary='اعتبار سنجی کد یک بار مصرف برای ورود')
->>>>>>> d244423 (firs commit on linux)
+
     def post(self , request , *args, **kwargs):
         serializer = SecondStepLoginSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

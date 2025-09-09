@@ -32,7 +32,6 @@ class DeleteProfileView(APIView):
         
     }
     
-    
     Response Format (Error):
     HTTP 400 Bad Request
     {

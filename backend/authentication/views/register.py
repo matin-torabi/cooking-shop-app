@@ -52,11 +52,10 @@ class FirstStepRegisterView(APIView):
     
     '''
     permission_classes = [AllowAny]
-<<<<<<< HEAD
+
     @extend_schema(request=FirstStepRegisterSerializer , responses={200 : dict} , summary='ارسال کد یک بار مصرف برای ثبت نام')
-=======
-    @extend_schema(request=FirstStepRegisterSerializer , responses={200 : dict} , summary='دریافت کد یک بار مصرف برای ثبت نام')
->>>>>>> d244423 (firs commit on linux)
+
+
     def post(self , request , *args, **kwargs):
         serializer = FirstStepRegisterSerializer(data=request.data)
         
