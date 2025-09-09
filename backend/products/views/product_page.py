@@ -13,7 +13,7 @@ from rest_framework import generics
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 
-@method_decorator(cache_page(60 * 15), name="dispatch")
+@method_decorator(cache_page(60 * 15), name="dispatch") # 15 min
 @extend_schema(responses=ProductPageSerializer,summary="صفحه محصولات" , description='Receives a slug and returns the product associated with it.')
 class ProductPageView(generics.RetrieveAPIView):
     serializer_class = ProductPageSerializer
