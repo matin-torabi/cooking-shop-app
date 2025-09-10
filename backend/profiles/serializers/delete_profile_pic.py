@@ -26,7 +26,7 @@ class DeleteProfileSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'message': 'شما پروفایل ندارید' ,"status": "error",})
         return attrs
 
-    def update(self, instance):
+    def update(self, instance, validated_data):
 
         # Clear the image field
         if instance.image:

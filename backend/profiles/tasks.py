@@ -43,7 +43,7 @@ def save_profile(username, key, filename=None):
             return {"status": "error", "message": "عکس در کش پیدا نشد"}
 
         # delete previous profile
-        if profile.image and profile.image.name != 'profiles/profile.png':
+        if profile.image:
             profile.image.delete(save=False)
             
         

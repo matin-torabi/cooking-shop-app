@@ -1,0 +1,40 @@
+@HOST = http://0.0.0.0:8000
+
+@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NDg2MzA3LCJpYXQiOjE3NTc0ODQ1MDcsImp0aSI6ImZjYzIxZDhjNmZiYjQyNzViMTg0YzA1MTRiOTIxNTZmIiwidXNlcl9pZCI6IjczIn0.3FL54aLukCoZC-U__tqaSXS8J54fJ0vFdn1J1umecrg
+
+### get profile image
+GET {{HOST}}/profile/navbar/
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+
+### delete profile image
+DELETE  {{HOST}}/profile/delete/
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+
+### add profile image
+PATCH {{HOST}}/profile/update/
+Authorization: Bearer {{access}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="image"; filename="ananymouse.jpg"
+Content-Type: image/jpeg
+
+< ./media/ananymouse/test.png
+-
+--WebAppBoundary--
+
+
+### complete user's information
+POST {{HOST}}/profile/complete/
+Content-Type: application/json
+Authorization: Bearer {{access}}
+
+{
+  "first_name": "string",
+  "last_name": "string"
+}
+
