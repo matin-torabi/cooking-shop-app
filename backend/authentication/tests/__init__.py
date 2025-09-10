@@ -1,2 +1,3 @@
 from .test_register import *
-from .get_token import *
+from .test_login import *
+from .base import *

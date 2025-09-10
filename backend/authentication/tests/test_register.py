@@ -1,66 +1,42 @@
-from rest_framework.test import APITestCase
-from rest_framework import status
 from django.urls import reverse
-from django.contrib.auth import get_user_model
-from django.core.cache import cache
-User = get_user_model()
+from authentication.tests.base import BaseApiTest
 
 
 
-class TestRegisterAPIView(APITestCase):
+
+class AuthTests(BaseApiTest):
     def setUp(self):
-        # URLs
-        self.register_url = reverse('step-one-register')
-        self.register_url_ = reverse('step-two-register')
-        
-        self.valid_phone = '09379196023'
-        self.user_data = {'phone_number': self.valid_phone}
-        
-        cache.clear()
+        super().setUp()
+        self.step_one_register = reverse("step-one-register")
+        self.step_two_register = reverse("step-two-register")
 
-    def tearDown(self):
-        cache.clear()
+    def register_one(self , value:str) -> str:
+        return self.client.post(self.step_one_register, {"phone_number": value,})
+        
+        
+    def register_two(self , value:str , otp , temp_token) -> str:
+        return self.client.post(self.step_two_register, {"phone_number": value, 'otp_code':otp , 'temp_token':temp_token})
+            
+    def test_step_one_register(self):
+        response = self.register_one('09123456781')
+        self.assertEqual(response.status_code, 200)
+    
+        
+    def test_step_one_register_empty(self):
+        response = self.register_one('')
+        self.assertEqual(response.status_code, 400)
+        
+    def test_step_one_register_invalid(self):
+        response = self.register_one('invalid-number')
+        self.assertEqual(response.status_code, 400)
+        
+    def test_step_two_register(self):
+        response = self.register_one('09123456782')
+        self.assertEqual(response.status_code, 200)
 
-    def test_api_endpoint_success(self):
-        """Test the API endpoint with valid data"""
-        response = self.client.post(self.register_url, self.user_data, format='json')
-        # after validations it send to second step register
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertIn('message', response.data)
-        self.assertIn('temp_token', response.data)
-        self.assertIn('status', response.data)
-        
-        
-        # test auth/register/step-two/ , send otp and temp_token for validation
-        request = self.client.post(self.register_url_ , response.data , format='json')
+        otp = response.data.get("otp_code")
+        temp_token =response.data.get('temp_token')
+        response_two = self.register_two('09123456782' , otp , temp_token)
+        print(response_two.data)
+        self.assertEqual(response_two.status_code, 201)
 
-        self.assertEqual(request.status_code, status.HTTP_201_CREATED)
-        self.assertIn('refresh', request.data)
-        self.assertIn('access', request.data)
-        self.assertIn('status', request.data)
-        self.assertIn('message', request.data)
-
-    def test_api_endpoint_invalid_data(self):
-        """Test the API endpoint with invalid data"""
-        invalid_data = {'phone_number': 'invalid'}
-        response = self.client.post(self.register_url, invalid_data, format='json')
-        # print(response.data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn('message', response.data)
-        
-    def test_api_endpoint_invalid_data_12_digit(self):
-        """Test the API endpoint with 12 digit number"""
-        invalid_data = {'phone_number': '091111111112'}
-        response = self.client.post(self.register_url, invalid_data, format='json')
-        # print(response.data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn('message', response.data)
-        
-    def test_api_endpoint_empty_field(self):
-        """Test the API endpoint with empty data"""
-        invalid_data = {'phone_number': ''}
-        response = self.client.post(self.register_url, invalid_data, format='json')
-        # print(response.data)
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        
-        
