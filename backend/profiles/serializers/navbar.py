@@ -37,6 +37,7 @@ class NavbarSerializer(serializers.ModelSerializer):
          # default profile:
         return request.build_absolute_uri('/media/ananymouse/ananymouse.jpg/')
 
+
    def get_cart_count(self, obj):
       return 10
       #   return obj.cart.items.count() if hasattr(obj, "cart") else 0 BUG BUG

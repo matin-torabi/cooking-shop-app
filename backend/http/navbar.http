@@ -1,0 +1,9 @@
+@HOST = http://0.0.0.0:8000
+
+
+# @refresh = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTAzOTczODE2MTUsImlhdCI6MTc1NzQ2ODAxNSwianRpIjoiOWFiZWNhOTMzMjYzNGFlNGE5YzhiMzdlYzBkZDY4MGQiLCJ1c2VyX2lkIjoiNzAifQ.1-3YxHjQTwlPctcp-YDrMb1YQoETbgL-cVGPwQzwVjI
+@access = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzU3NDgyMzY4LCJpYXQiOjE3NTc0ODA1NjgsImp0aSI6ImIwNDk0ZTMwMTM4NDQyNTM4NDA2MTQzMjlhNjY2Nzc3IiwidXNlcl9pZCI6IjczIn0.Wub_DFbPZdmC2jvmJldn6jmd_vEBz7vvhdnt9klcMdI
+
+GET {{HOST}}/profile/navbar/
+Content-Type: application/json
+Authorization: Bearer {{access}}
