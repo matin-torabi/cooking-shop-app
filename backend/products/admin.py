@@ -1,3 +1,14 @@
 from django.contrib import admin
 
-# Register your models here.
+
+# models
+from products.models.product import Product
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    '''
+    this is for Products
+    '''
+    # add your custom setting here
+    pass
+
