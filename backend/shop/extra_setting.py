@@ -55,7 +55,6 @@ CELERY_TIMEZONE = "Asia/Tehran"
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-from datetime import timedelta
 
 
 REST_FRAMEWORK = {
