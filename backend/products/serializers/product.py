@@ -11,7 +11,7 @@ class ProductSerializer(serializers.ModelSerializer):
     it returns all products and product's category
     '''
     category = CategorySerializer(many=True, read_only=True)
-    images = ProductImageSerializer(many=True, read_only=True)
+    image = serializers.SerializerMethodField()
     final_price = serializers.SerializerMethodField()
     class Meta:
         model = Product
@@ -27,4 +27,13 @@ class ProductSerializer(serializers.ModelSerializer):
         else:
             discount = 0
 
-        return obj.price * (100 - discount) // 100
+        price = obj.price * (100 - discount) / 100
+        formatted = "{:,.0f}".format(price)
+        return formatted
+    
+    def get_image(self, obj):
+        from django.conf import settings
+        first_image = obj.images.first()
+        if first_image and first_image.image:
+            return first_image.image.url
+        return None
