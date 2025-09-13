@@ -3,6 +3,8 @@ from django.contrib import admin
 
 # models
 from products.models.product import Product
+# models
+from products.models.category import Category
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
@@ -11,4 +13,14 @@ class ProductAdmin(admin.ModelAdmin):
     '''
     # add your custom setting here
     pass
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    '''
+    this is for Category
+    '''
+    # add your custom setting here
+    pass
+
+
 

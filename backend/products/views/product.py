@@ -13,6 +13,9 @@ from rest_framework import generics
 
 
 class ProductView(generics.ListAPIView):
+    """
+    this API returns all products with paginate
+    """
     queryset = Product.objects.all().order_by('-id')
     serializer_class = ProductSerializer
 
