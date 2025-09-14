@@ -11,7 +11,7 @@ class ProductAdmin(admin.ModelAdmin):
     '''
     this is for Products
     '''
-    # add your custom setting here
+    prepopulated_fields = {'slug': ('name',)}
     pass
 
 
