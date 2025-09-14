@@ -13,6 +13,7 @@ class ProductSerializer(serializers.ModelSerializer):
     category = CategorySerializer(many=True, read_only=True)
     image = serializers.SerializerMethodField()
     final_price = serializers.SerializerMethodField()
+    price  = serializers.SerializerMethodField()
     class Meta:
         model = Product
         fields = '__all__'
@@ -32,8 +33,13 @@ class ProductSerializer(serializers.ModelSerializer):
         return formatted
     
     def get_image(self, obj):
-        from django.conf import settings
         first_image = obj.images.first()
         if first_image and first_image.image:
             return first_image.image.url
         return None
+    
+    
+    def get_price(self , obj):
+        price = obj.price
+        formatted = "{:,.0f}".format(price)
+        return formatted

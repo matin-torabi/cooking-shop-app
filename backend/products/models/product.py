@@ -19,8 +19,9 @@ class Product(models.Model):
 
     
     def __str__(self):
-        return self.name
+        return f'{self.name} - {self.price}'
     
     def save(self, *args, **kwargs):
         self.slug = generate_slug(self , name = self.name)
         super().save(*args, **kwargs)
+        
