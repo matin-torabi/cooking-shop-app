@@ -11,10 +11,11 @@ class ProductPageSerializer(serializers.ModelSerializer):
     final_price = serializers.SerializerMethodField()
     price = serializers.SerializerMethodField()
     discount = serializers.SerializerMethodField()
+    # weight = serializers.SerializerMethodField()
     
     class Meta:
         model = Product
-        fields = ['name' , 'created_at' , 'description' , 'category' , 'image' , 'final_price' , 'price', 'discount']
+        fields = ['name' , 'created_at', 'slug','description' , 'category' , 'image' , 'final_price' , 'price', 'discount','weight' ,'weight_type' , 'shelf_life_type' , 'shelf_life' ]
 
     def get_final_price(self, obj) -> int:
         # Calculates the final price of the product by applying the discount (if any)
@@ -35,7 +36,7 @@ class ProductPageSerializer(serializers.ModelSerializer):
         return formatted
     
 
-    def get_image(self, obj):
+    def get_image(self, obj) -> str:
         request = self.context.get('request')
         images = obj.images.all()
 
@@ -62,5 +63,13 @@ class ProductPageSerializer(serializers.ModelSerializer):
 
         return 0
     
-    def get_category(self, obj):
-        return obj.category.name
+    def get_category(self, obj)-> str:
+        if obj.category.name:
+            return obj.category.name
+        else:
+            return 'بدون دسته بندی' 
+        
+        
+    # def get_weight(self , obj):
+        
+    #     ...

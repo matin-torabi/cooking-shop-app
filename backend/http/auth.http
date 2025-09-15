@@ -1,8 +1,8 @@
 
 @HOST = http://localhost:8000
-@PHONE = 09123456789
-@otp_code = 444448
-@temp_token = f7a6bf3f-659e-41fe-a260-922a302d24e7
+@PHONE = 09123456787
+@otp_code = 478248
+@temp_token = c2264358-d161-4e8a-8659-a7d830a43258
 
 ### first step registration
 POST {{HOST}}/auth/register/step-one/

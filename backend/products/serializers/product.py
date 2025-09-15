@@ -44,7 +44,7 @@ class ProductSerializer(serializers.ModelSerializer):
         return formatted
     
 
-    def get_image(self, obj):
+    def get_image(self, obj) -> str:
         # A product can have multiple images.
         # This method only returns the first image of the product.
         # So the result will always be a single image (not all of them).
@@ -75,5 +75,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
         return 0
     
-    def get_category(self, obj):
-        return obj.category.name
+    def get_category(self, obj) -> str:
+        if obj.category.name:
+            return obj.category.name
+        else:
+            return 'بدون دسته بندی' 

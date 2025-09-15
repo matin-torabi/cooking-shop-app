@@ -61,7 +61,7 @@ REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema", # NOTE this is auto AutoSchema drf spectacular
     'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework_simplejwt.authentication.JWTAuthentication',),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 2,
+    'PAGE_SIZE': 15,
                 }
 
 SIMPLE_JWT = {
@@ -81,4 +81,6 @@ SPECTACULAR_SETTINGS = {
     
 }
 
-# CLENUP_IGNORE_MODELS = ['profiles.Profile']
+DJANGO_CLEANUP_IGNORE_MODELS = [
+    'profiles.models.profile.Profile',
+]

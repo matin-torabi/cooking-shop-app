@@ -17,6 +17,7 @@ djangorestframework-simplejwt = "*"
 pillow = "*"
 django-cleanup = "*"
 python-slugify = "*"
+django-jalali = "*"
 
 [dev-packages]
 
