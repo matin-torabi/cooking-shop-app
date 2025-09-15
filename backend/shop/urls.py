@@ -16,10 +16,13 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 urlpatterns = [
    path('admin/', admin.site.urls),
    # auth:
-   path('auth/' , include('authentication.urls')),
+      path('auth/' , include('authentication.urls')),
    # profile:
-   path('profile/' , include('profiles.urls')),
-   path('product/' , include('products.urls')),
+      path('profile/' , include('profiles.urls')),
+   # product:
+      path('product/' , include('products.urls')),
+   # admin panel:
+      path('panel/' , include('panel.urls')),
    
    # api documents:
    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
