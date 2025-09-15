@@ -8,6 +8,9 @@ from panel.serializers.users import UserSerializer
 
 @extend_schema(responses=UserSerializer,summary="لیست کاربران")
 class UsersPanellView(ListAPIView):
+    '''
+    it returns all user
+    '''
     queryset = get_user_model().objects.all().order_by('-id')
     permission_classes = [IsAdmin]
     pagination_class = PanelPagination

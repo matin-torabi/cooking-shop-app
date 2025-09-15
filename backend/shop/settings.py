@@ -31,6 +31,8 @@ INSTALLED_APPS = [
         'profiles', # this is for user pofile (first and last name , image profile , e.t.c)
         'products', # this app is for products
         'checkout', # this is for basket
+        'panel',
+        'comments',
     
     # external apps:
         'rest_framework',
