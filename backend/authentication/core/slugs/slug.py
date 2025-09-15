@@ -15,13 +15,14 @@ def save(self, *args, **kwargs):
 '''
 
 
+from slugify import slugify as py_slugify
 
-def generate_slug(instance , name):
+def generate_slug(instance, name):
     """
-    generate unique slug
+    generate unique slug with transliteration (فارسی -> انگلیسی)
     """
-    
-    base_slug = slugify(name)
+
+    base_slug = py_slugify(name)
     slug = base_slug
     counter = 1
 

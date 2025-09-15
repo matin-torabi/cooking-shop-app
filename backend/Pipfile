@@ -16,6 +16,7 @@ django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
 pillow = "*"
 django-cleanup = "*"
+python-slugify = "*"
 
 [dev-packages]
 

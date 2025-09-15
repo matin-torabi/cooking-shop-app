@@ -16,7 +16,7 @@ class Product(models.Model):
     stock = models.PositiveIntegerField(default=0)
     category = models.ManyToManyField(Category , related_name='category' , null=True , blank=True)
     discount = models.PositiveIntegerField(default=0,validators=[MinValueValidator(0), MaxValueValidator(100)])
-
+    
     
     def __str__(self):
         return f'{self.name} - {self.price}'

@@ -7,5 +7,4 @@ class ProfilesConfig(AppConfig):
     
     def ready(self):
         from authentication.core.signals.register_signal import emit_user_registered
-        from profiles.signals import profile
-        
+        from profiles.signals import profile        

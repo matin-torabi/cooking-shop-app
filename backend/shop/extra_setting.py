@@ -81,4 +81,4 @@ SPECTACULAR_SETTINGS = {
     
 }
 
-CLENUP_IGNORE_MODELS = ['profiles.Profile']
+# CLENUP_IGNORE_MODELS = ['profiles.Profile']
