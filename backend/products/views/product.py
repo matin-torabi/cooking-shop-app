@@ -1,3 +1,5 @@
+# return all products
+
 # models:
 from products.models.product import Product
 
@@ -15,7 +17,7 @@ from rest_framework import generics
 
 class ProductView(generics.ListAPIView):
     """
-    this API returns the 
+    this API returns the all products with Pagination
     """
     queryset = Product.objects.all().order_by('-id')
     serializer_class = ProductSerializer

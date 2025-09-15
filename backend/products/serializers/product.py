@@ -1,4 +1,4 @@
-# this file returns products 
+#NOTE This file handles the main page of the site and returns all products with pagination.
 
 
 # models:
@@ -64,7 +64,11 @@ class ProductSerializer(serializers.ModelSerializer):
         formatted = "{:,.0f}".format(price)
         return formatted
     
-    def get_discount(self, obj) -> str:    
+    def get_discount(self, obj) -> str:  
+        """
+        Priority is given to the product.  
+        Returns the product's discount if it exists; otherwise, returns the category's discount if available.
+        """  
         discount = obj.discount
 
         if discount > 0:
@@ -76,6 +80,10 @@ class ProductSerializer(serializers.ModelSerializer):
         return 0
     
     def get_category(self, obj) -> str:
+        """
+        Returns the category name if the product belongs to a category; 
+        otherwise, returns a default message.
+        """
         if obj.category.name:
             return obj.category.name
         else:

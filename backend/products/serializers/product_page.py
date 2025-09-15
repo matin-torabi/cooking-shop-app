@@ -1,3 +1,5 @@
+# NOTE this file is for product pages , it handle product inforamtions
+
 # models:
 from products.models.product import Product
 
@@ -5,13 +7,16 @@ from products.models.product import Product
 from rest_framework import serializers
 
 class ProductPageSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the product page.
+    Handles all relevant information about a product.
+    """
     
     category = serializers.SerializerMethodField()
     image = serializers.SerializerMethodField()
     final_price = serializers.SerializerMethodField()
     price = serializers.SerializerMethodField()
     discount = serializers.SerializerMethodField()
-    # weight = serializers.SerializerMethodField()
     
     class Meta:
         model = Product
@@ -37,6 +42,7 @@ class ProductPageSerializer(serializers.ModelSerializer):
     
 
     def get_image(self, obj) -> str:
+        # Returns all images that belong to the product.
         request = self.context.get('request')
         images = obj.images.all()
 
@@ -53,6 +59,10 @@ class ProductPageSerializer(serializers.ModelSerializer):
         return formatted
     
     def get_discount(self, obj) -> str:    
+        """
+        Priority is given to the product.  
+        Returns the product's discount if it exists; otherwise, returns the category's discount if available.
+        """
         discount = obj.discount
 
         if discount > 0:
@@ -64,12 +74,11 @@ class ProductPageSerializer(serializers.ModelSerializer):
         return 0
     
     def get_category(self, obj)-> str:
+        """
+        Returns the category name if the product belongs to a category; 
+        otherwise, returns a default message.
+        """
         if obj.category.name:
             return obj.category.name
         else:
             return 'بدون دسته بندی' 
-        
-        
-    # def get_weight(self , obj):
-        
-    #     ...
