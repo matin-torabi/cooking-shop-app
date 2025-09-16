@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+/* @layer base{
+  html{
+    @apply transition-colors duration-300
+  }
+  body{
+    @apply bg-white dark:bg-gray-900 text-gray-100
+  }
+} */
+
+@theme {
+    --breakpoint-*: initial;
+    --breakpoint-mobile: 340px;
+    --breakpoint-tablet: 640px;
+    --breakpoint-laptop: 1100px;
+    --breakpoint-desktop: 1500px;
+}
+@font-face {
+    font-family: Yekan;
+    src: url(../public/font/IRANYekanWeb-Bold.eot);
+    src: url(../public/font/IRANYekanWeb-Bold.ttf);
+    src: url(../public/font/IRANYekanWeb-Bold.woff);
+    src: url(../public/font/IRANYekanWeb-Bold.woff2);
+  }
+@font-face {
+    font-family: Number;
+    src: url(../public/font/fontello-Cqw191qV.woff2);
+    src: url(../public/font/Shabnam-Bold-FD-B4xNpIWI.woff2);
+    src: url(../public/font/Shabnam-FD-UqE7V9cL.woff2);
+    src: url(../public/font/Shabnam-Medium-FD-CCYWnpK7.woff2);
+  }  
+:root {
+    --fontFamily: Yekan;
+    --fontFamily: Number;
+}
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ffff;
+    border: 1px solid #E2E8F0;
+}
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+    font-size: 12px;
+    color: #8E8E8E;
+    font-weight: bold;
+
+}
+.swiper-button-next, .swiper-rtl .swiper-button-prev{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #ffff;
+    border: 1px solid #E2E8F0;
+}
+.swiper-button-next:after, .swiper-rtl .swiper-button-prev:after{
+    font-size: 12px;
+    color: #8E8E8E;
+    font-weight: bold;
+}
